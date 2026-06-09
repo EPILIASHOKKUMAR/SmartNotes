@@ -1,65 +1,69 @@
 # 🚀 Quick Start Guide
 
-Follow these simple steps to get the Notes App running:
+Get the Notes App running in under 2 minutes!
 
-## Step 1: Install Backend Dependencies
+## Step 1: Install Dependencies
+
+### Backend
 ```bash
 cd server
 npm install
 ```
 
-## Step 2: Install Frontend Dependencies
+### Frontend
 ```bash
-cd ../client
+cd client
 npm install
 ```
 
-## Step 3: Start the Backend Server
-Open a terminal and run:
+## Step 2: Start the Application
+
+### Terminal 1 - Backend (Port 5000)
 ```bash
 cd server
 npm start
 ```
-✅ Backend running on http://localhost:5000
+✅ Backend running at http://localhost:5000
 
-## Step 4: Start the Frontend
-Open a **second terminal** and run:
+### Terminal 2 - Frontend (Port 3000)
 ```bash
 cd client
 npm run dev
 ```
-✅ Frontend running on http://localhost:3000
+✅ Frontend running at http://localhost:3000
 
-## That's it! 🎉
+## Step 3: Use the App
 
-The app should automatically open in your browser. If not, navigate to:
-**http://localhost:3000**
+The app will automatically open in your browser at http://localhost:3000
 
-## Test the Search Feature
-
-Try creating notes with these titles:
-- "Python Tutorial"
-- "JavaScript Basics"
-- "React Learning"
-
-Then search for:
-- "python" ✓
-- "PYTHON" ✓
-- "react" ✓
-- "learn" ✓
-
-All searches are case-insensitive and work with substring matching!
+### Quick Test:
+1. Create a note with title "Python Tutorial" and body "Learn Python basics"
+2. Create another note with title "JavaScript Guide"
+3. Search for "python" - case-insensitive search works!
+4. Edit a note by clicking the ✏️ icon
+5. Delete a note by clicking the 🗑️ icon
 
 ## Troubleshooting
 
 **Port already in use?**
-- Backend: Change PORT in server/server.js
-- Frontend: Change port in client/vite.config.js
+- Backend: Change PORT in `server/server.js`
+- Frontend: Change port in `client/vite.config.js`
 
-**Connection refused?**
-- Make sure the backend server is running first
-- Check that backend is on port 5000
+**CORS errors?**
+- Make sure backend is running on port 5000
+- Check that CORS is enabled in `server/server.js`
+
+**Module not found?**
+- Run `npm install` in both server and client directories
+
+## What's Next?
+
+Check out the full [README.md](README.md) for:
+- Complete API documentation
+- Architecture details
+- Feature descriptions
+- Development tips
 
 ---
 
-Need more details? Check the full README.md
+**Happy Note-Taking! 📝**
