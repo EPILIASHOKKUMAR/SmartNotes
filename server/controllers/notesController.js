@@ -33,6 +33,16 @@ const createNote = (req, res) => {
       return res.status(400).json({ error: 'Body is required' });
     }
 
+    // Check for duplicate title (case-insensitive)
+    const titleLower = title.trim().toLowerCase();
+    const duplicateExists = notes.some(
+      note => note.title.toLowerCase() === titleLower
+    );
+
+    if (duplicateExists) {
+      return res.status(400).json({ error: 'A note with this title already exists' });
+    }
+
     // Create new note
     const newNote = {
       id: uuidv4(),
@@ -70,6 +80,16 @@ const updateNote = (req, res) => {
     
     if (noteIndex === -1) {
       return res.status(404).json({ error: 'Note not found' });
+    }
+
+    // Check for duplicate title (case-insensitive), excluding current note
+    const titleLower = title.trim().toLowerCase();
+    const duplicateExists = notes.some(
+      note => note.id !== id && note.title.toLowerCase() === titleLower
+    );
+
+    if (duplicateExists) {
+      return res.status(400).json({ error: 'A note with this title already exists' });
     }
 
     // Update note (preserve id and createdAt)
