@@ -4,21 +4,25 @@ A modern, full-stack Notes Application built with React.js and Node.js/Express. 
 
 ## ✨ Features
 
-- **Create Notes**: Add new notes with title and content
+- **Create Notes**: Add new notes with title and rich-formatted content
+- **Rich Text Editor**: Format notes with bold, italic, colors, lists, headers, and more
 - **View Notes**: Display all notes sorted by most recent first
 - **Edit Notes**: Update existing notes with real-time reflection
 - **Delete Notes**: Remove notes with confirmation dialog
 - **Search Notes**: Case-insensitive, substring-based search across title and content
+- **Date Tracking**: Automatic timestamps for creation and updates
+- **Duplicate Prevention**: No duplicate note titles allowed
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Real-time Validation**: Form validation with error messages
-- **Professional UI**: Clean, modern interface with smooth animations
+- **Professional UI**: Clean, modern interface with purple gradient theme and smooth animations
 
 ## 🛠️ Technology Stack
 
 ### Frontend
 - **React.js** (v18.2.0) - UI library
+- **React Quill** - Rich text editor
 - **Vite** - Build tool and dev server
-- **CSS3** - Styling with modern features
+- **CSS3** - Styling with modern features and animations
 - **ES6+** - Modern JavaScript
 
 ### Backend
@@ -35,7 +39,7 @@ A modern, full-stack Notes Application built with React.js and Node.js/Express. 
 ```
 notes-app/
 │
-├── client/                      # Frontend React application
+├── FRONTEND/                    # Frontend React application
 │   ├── src/
 │   │   ├── components/         # Reusable React components
 │   │   │   ├── Header.jsx
@@ -60,7 +64,7 @@ notes-app/
 │   ├── vite.config.js          # Vite configuration
 │   └── package.json            # Frontend dependencies
 │
-├── server/                      # Backend Express application
+├── BACKEND/                     # Backend Express application
 │   ├── controllers/            # Business logic
 │   │   └── notesController.js
 │   ├── routes/                 # API routes
@@ -87,13 +91,13 @@ cd notes-app
 
 ### 2. Install Backend Dependencies
 ```bash
-cd server
+cd BACKEND
 npm install
 ```
 
 ### 3. Install Frontend Dependencies
 ```bash
-cd ../client
+cd ../FRONTEND
 npm install
 ```
 
@@ -103,14 +107,14 @@ You need to run both the backend server and frontend development server simultan
 
 ### Terminal 1: Start Backend Server
 ```bash
-cd server
+cd BACKEND
 npm start
 ```
 The backend server will run on **http://localhost:5000**
 
 ### Terminal 2: Start Frontend Development Server
 ```bash
-cd client
+cd FRONTEND
 npm run dev
 ```
 The frontend will run on **http://localhost:3000** and automatically open in your browser.
