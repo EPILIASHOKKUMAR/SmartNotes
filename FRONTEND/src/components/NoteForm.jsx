@@ -1,10 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import './NoteForm.css';
 
 const NoteForm = ({ onSubmit, editingNote, onCancelEdit }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState({});
+
+  const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, false] }],
+      [{ 'font': [] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'align': [] }],
+      ['blockquote'],
+      ['link', 'image'],
+      ['clean']
+    ]
+  };
+
+  const formats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike',
+    'color', 'background',
+    'list', 'bullet',
+    'align',
+    'blockquote',
+    'link', 'image'
+  ];
 
   useEffect(() => {
     if (editingNote) {
@@ -22,7 +49,8 @@ const NoteForm = ({ onSubmit, editingNote, onCancelEdit }) => {
     if (!title.trim()) {
       newErrors.title = 'Title is required';
     }
-    if (!body.trim()) {
+    const strippedBody = body.replace(/<[^>]*>/g, '').trim();
+    if (!strippedBody) {
       newErrors.body = 'Body is required';
     }
     return newErrors;
@@ -37,7 +65,7 @@ const NoteForm = ({ onSubmit, editingNote, onCancelEdit }) => {
       return;
     }
 
-    onSubmit({ title: title.trim(), body: body.trim() });
+    onSubmit({ title: title.trim(), body: body });
     setTitle('');
     setBody('');
     setErrors({});
@@ -65,24 +93,26 @@ const NoteForm = ({ onSubmit, editingNote, onCancelEdit }) => {
               setTitle(e.target.value);
               if (errors.title) setErrors({ ...errors, title: '' });
             }}
-            placeholder="Enter note title"
+            placeholder="✨ Enter an awesome note title..."
           />
           {errors.title && <span className="error-message">{errors.title}</span>}
         </div>
 
         <div className="form-group">
           <label htmlFor="body">Content *</label>
-          <textarea
-            id="body"
-            className={`form-textarea ${errors.body ? 'error' : ''}`}
-            value={body}
-            onChange={(e) => {
-              setBody(e.target.value);
-              if (errors.body) setErrors({ ...errors, body: '' });
-            }}
-            placeholder="Enter note content"
-            rows="5"
-          />
+          <div className={`quill-wrapper ${errors.body ? 'error' : ''}`}>
+            <ReactQuill
+              theme="snow"
+              value={body}
+              onChange={(value) => {
+                setBody(value);
+                if (errors.body) setErrors({ ...errors, body: '' });
+              }}
+              modules={modules}
+              formats={formats}
+              placeholder="📝 Write your note content here with rich formatting..."
+            />
+          </div>
           {errors.body && <span className="error-message">{errors.body}</span>}
         </div>
 

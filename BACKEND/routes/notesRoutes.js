@@ -8,10 +8,8 @@ const {
   searchNotes
 } = require('../controllers/notesController');
 
-// Search route must come before /:id routes to avoid conflicts
 router.get('/search', searchNotes);
 
-// CRUD routes
 router.get('/', getAllNotes);
 router.post('/', createNote);
 router.put('/:id', updateNote);

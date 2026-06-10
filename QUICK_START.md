@@ -6,13 +6,13 @@ Get the Notes App running in under 2 minutes!
 
 ### Backend
 ```bash
-cd server
+cd backend
 npm install
 ```
 
 ### Frontend
 ```bash
-cd client
+cd frontend
 npm install
 ```
 
@@ -20,21 +20,21 @@ npm install
 
 ### Terminal 1 - Backend (Port 5000)
 ```bash
-cd server
+cd backend
 npm start
 ```
 ✅ Backend running at http://localhost:5000
 
-### Terminal 2 - Frontend (Port 3000)
+### Terminal 2 - Frontend (Port 5173)
 ```bash
-cd client
+cd frontend
 npm run dev
 ```
-✅ Frontend running at http://localhost:3000
+✅ Frontend running at http://localhost:5173
 
 ## Step 3: Use the App
 
-The app will automatically open in your browser at http://localhost:3000
+The app will automatically open in your browser at http://localhost:5173
 
 ### Quick Test:
 1. Create a note with title "Python Tutorial" and body "Learn Python basics"
@@ -46,15 +46,15 @@ The app will automatically open in your browser at http://localhost:3000
 ## Troubleshooting
 
 **Port already in use?**
-- Backend: Change PORT in `server/server.js`
-- Frontend: Change port in `client/vite.config.js`
+- Backend: Change PORT in `backend/.env`
+- Frontend: Change port in `frontend/vite.config.js`
 
 **CORS errors?**
 - Make sure backend is running on port 5000
-- Check that CORS is enabled in `server/server.js`
+- Check that CORS is enabled in `backend/server.js`
 
 **Module not found?**
-- Run `npm install` in both server and client directories
+- Run `npm install` in both backend and frontend directories
 
 ## What's Next?
 

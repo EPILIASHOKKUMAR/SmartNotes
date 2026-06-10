@@ -4,13 +4,23 @@ import './NoteCard.css';
 const NoteCard = ({ note, onEdit, onDelete }) => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+    const options = {
+      weekday: 'long',
       year: 'numeric',
-      month: 'short',
+      month: 'long',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
-    });
+      minute: '2-digit',
+      hour12: true
+    };
+    return date.toLocaleString('en-US', options);
+  };
+
+  const getDateLabel = () => {
+    if (note.updatedAt && note.updatedAt !== note.createdAt) {
+      return `🔄 Updated: ${formatDate(note.updatedAt)}`;
+    }
+    return `📅 Created: ${formatDate(note.createdAt)}`;
   };
 
   const handleDelete = () => {
@@ -42,9 +52,9 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
           </button>
         </div>
       </div>
-      <p className="note-body">{note.body}</p>
+      <div className="note-body" dangerouslySetInnerHTML={{ __html: note.body }}></div>
       <div className="note-footer">
-        <span className="note-date">📅 {formatDate(note.createdAt)}</span>
+        <span className="note-date">{getDateLabel()}</span>
       </div>
     </div>
   );

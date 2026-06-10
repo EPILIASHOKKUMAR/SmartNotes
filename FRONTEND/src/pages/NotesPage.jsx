@@ -14,12 +14,10 @@ const NotesPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Load notes on mount
   useEffect(() => {
     loadNotes();
   }, []);
 
-  // Handle search
   useEffect(() => {
     if (searchQuery.trim()) {
       performSearch(searchQuery);
@@ -58,11 +56,9 @@ const NotesPage = () => {
     try {
       setError(null);
       if (editingNote) {
-        // Update existing note
         await api.updateNote(editingNote.id, noteData);
         setEditingNote(null);
       } else {
-        // Create new note
         await api.createNote(noteData);
       }
       await loadNotes();
@@ -74,7 +70,6 @@ const NotesPage = () => {
 
   const handleEditNote = (note) => {
     setEditingNote(note);
-    // Scroll to form
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
